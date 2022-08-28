@@ -49,7 +49,7 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 {
 	$message_body = $request->getParam('message_body');
 	$sender_id = $request->getParam('sender_id');
-	$parent_message_id = $request->getParam('parent_message_id')
+	$parent_message_id = $request->getParam('parent_message_id');
 
 	$sql_query="INSERT INTO messages (message_body,sender_id,parent_message_id) VALUES (:message_body,:sender_id,:parent_message_id)";
 	try
