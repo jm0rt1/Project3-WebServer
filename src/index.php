@@ -20,19 +20,19 @@ $app->get('/api/messages', function(Request $request, Response $response)
 	{
 		$datab = connect_to_db();
 		$stmt = $datab->query($sql_query);
-		$posts = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$messages = $stmt->fetchAll(PDO::FETCH_OBJ);
 		$datab=null;
-		echo json_encode($posts);
+		echo json_encode($messages);
 	}
 	catch(PDOException $e)
 	{
 		echo '{"error":{"text":'.$e->getMessage().'}';
 	}
 });
-$app->delete('/api/posts/delete', function (Request $request, Response $response)
+$app->delete('/api/messages/delete', function (Request $request, Response $response)
 {
 	$id = $request->getParam('id');
-	$sql_query="DELETE FROM posts where id = '$id'";
+	$sql_query="DELETE FROM messages where id = '$id'";
 	try
 	{
 		$datab=connect_to_db();
@@ -46,13 +46,13 @@ $app->delete('/api/posts/delete', function (Request $request, Response $response
 		echo '{"error":{"text":'.$e->getMessage().'}';
 	}
 });
-$app->post('/api/posts/add', function (Request $request, Response $response)
+$app->post('/api/messages/add', function (Request $request, Response $response)
 {
-	$title = $request->getParam('title');
-	$content = $request->getParam('content');
-	$owner_id = $request->getParam('owner_id');
+	$message_body = $request->getParam('message_body');
+	$sender_id = $request->getParam('sender_id');
+	$parent_message_id = $request->getParam('parent_message_id')
 
-	$sql_query="INSERT INTO posts (owner_id,title,content) VALUES (:owner_id,:title,:content)";
+	$sql_query="INSERT INTO messages (message_body,sender_id,parent_message_id) VALUES (:message_body,:sender_id,:parent_message_id)";
 	try
 	{
 		$datab=connect_to_db();
