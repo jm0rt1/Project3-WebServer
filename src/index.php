@@ -5,7 +5,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
 function connect_to_db()
 {
-	$dbconnection = new PDO('mysql:host=localhost;dbname=social_media','jm','pass123');
+	$dbconnection = new PDO('mysql:host=localhost;dbname=messaging_system','jm','pass123');
 	return $dbconnection;
 }
 
@@ -13,9 +13,9 @@ $app = new \Slim\App;
 // comment 3
 
 
-$app->get('/api/posts', function(Request $request, Response $response)
+$app->get('/api/messages', function(Request $request, Response $response)
 {
-	$sql_query="SELECT * FROM posts";
+	$sql_query="SELECT * FROM messages";
 	try
 	{
 		$datab = connect_to_db();
