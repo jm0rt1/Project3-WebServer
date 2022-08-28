@@ -72,7 +72,8 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 
 $app->get('/api/message_recipients', function(Request $request, Response $response)
 {
-	$sql_query="SELECT * FROM message_recipients";
+	$id = $request->getParam('recipient_id');
+	$sql_query="SELECT * FROM message_recipients where recipient_id= $id";
 	try
 	{
 		$datab = connect_to_db();
