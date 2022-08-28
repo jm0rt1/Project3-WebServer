@@ -72,7 +72,9 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 
 $app->get('/api/message_recipients', function(Request $request, Response $response)
 {
-	$id = $request->getParam('recipient_id');
+	try{
+		$id = $request->getParam('recipient_id');
+	}
 	$sql_query="SELECT * FROM message_recipients where recipient_id= $id";
 	try
 	{
