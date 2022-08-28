@@ -76,7 +76,8 @@ $app->get('/api/message_recipients', function(Request $request, Response $respon
 		$id = $request->getParam('recipient_id');
 		$sql_query="SELECT * FROM message_recipients where recipient_id= $id";
 	}
-	catch{
+	catch()
+	{
 		$sql_query="SELECT * FROM message_recipients";
 	}
 
