@@ -73,8 +73,10 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 $app->get('/api/message_recipients[/{id}]', function(Request $request, Response $response, $args)
 {
 
-	$id = $args['id'];
-	echo $id;
+	if($args['id'])){
+		$id = $args['id'];
+	}
+
 	// $sql_query="SELECT * FROM message_recipients where recipient_id= $id";
 
 
