@@ -95,7 +95,7 @@ $app->get('/api/message_recipients[/{id}]', function(Request $request, Response 
 });
 
 
-$app->get('/api/users[/{name}]', function(Request $request, Response $response)
+$app->get('/api/users[/{name}]', function(Request $request, Response $response, $args)
 {
 
 	if(isset($args['name'])){
