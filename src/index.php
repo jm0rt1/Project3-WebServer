@@ -100,7 +100,7 @@ $app->get('/api/users[/{name}]', function(Request $request, Response $response)
 
 	if(isset($args['name'])){
 		$name = $args['name'];
-		$sql_query="SELECT * FROM users where user_name= $name";
+		$sql_query="SELECT * FROM users WHERE `user_name` = "John";
 	}else{
 		$sql_query="SELECT * FROM users";
 	}
