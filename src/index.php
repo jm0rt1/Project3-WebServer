@@ -109,10 +109,19 @@ $app->get('/api/users[/{name}]', function(Request $request, Response $response, 
 	}
 	try
 	{
+		echo "1";
 		$datab = connect_to_db();
+		echo "2";
+
 		$stmt = $datab->query($sql_query);
+		echo "3";
+
 		$messages = $stmt->fetchAll(PDO::FETCH_OBJ);
+		echo "4";
+
 		$datab=null;
+		echo "5";
+
 		echo json_encode($messages);
 	}
 	catch(PDOException $e)
