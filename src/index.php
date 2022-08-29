@@ -104,6 +104,7 @@ $app->get('/api/users[/{name}]', function(Request $request, Response $response)
 		$sql_query="SELECT * FROM `users` WHERE `user_name` = $name";
 	}else{
 		$sql_query="SELECT * FROM users";
+		echo "no name";
 	}
 	try
 	{
