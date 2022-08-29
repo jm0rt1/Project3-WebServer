@@ -63,9 +63,9 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 	{
 		$datab=connect_to_db();
 		$stmt=$datab->prepare($sql_query);
-		$stmt->bindParam(':title',$title);
-		$stmt->bindParam(':content',$content);
-		$stmt->bindParam(':owner_id',$owner_id);
+		$stmt->bindParam(':message_body',$message_body);
+		$stmt->bindParam(':sender_id',$sender_id);
+		$stmt->bindParam(':parent_message_id',$parent_message_id);
 		$stmt->execute();
 		$datab=null;
 		echo '{"Result:{"text":"Post Added"}';
@@ -102,19 +102,12 @@ $app->get('/api/message_recipients[/{id}]', function(Request $request, Response 
 });
 
 
-$app->get('/api/users[/{name}]', function(Request $request, Response $response, $args)
+$app->get('/api/users', function(Request $request, Response $response, $args)
 {
 
-	if(isset($args['name'])){
-		
-		$name = $args['name'];
-		$sql_query="SELECT * FROM users where name1 = $name";
-		echo $name;
 
-	}else{
-		$sql_query="SELECT * FROM users";
-		echo "no name";
-	}
+	$sql_query="SELECT * FROM users";
+
 	try
 	{
 		$datab = connect_to_db();
