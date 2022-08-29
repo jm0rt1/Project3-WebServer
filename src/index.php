@@ -72,16 +72,15 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 
 $app->get('/api/message_recipients[/{id}]', function(Request $request, Response $response, $args)
 {
-	try{
-		if($args['id']){
-			$id = $args['id'];
-			echo $id;
-		}else{
-			echo "no id";
-		}
-	} catch (Exception $e){
-		
+
+	if(isset($args['id'])){
+		$id = $args['id'];
+		echo $id;
+	}else{
+		echo "no id";
 	}
+
+
 
 
 	
