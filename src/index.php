@@ -9,7 +9,14 @@ function connect_to_db()
 	return $dbconnection;
 }
 
-$app = new \Slim\App;
+
+
+$config = [
+    'settings' => [
+        'displayErrorDetails' => true]
+];
+
+$app = new \Slim\App($config);
 
 
 $app->get('/api/messages', function(Request $request, Response $response)
@@ -101,7 +108,7 @@ $app->get('/api/users[/{name}]', function(Request $request, Response $response, 
 	if(isset($args['name'])){
 		
 		$name = $args['name'];
-		$sql_query="SELECT * FROM users where 'user_name' = $name";
+		$sql_query="SELECT * FROM users where user_name = $name";
 		echo $name;
 
 	}else{
