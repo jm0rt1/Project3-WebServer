@@ -70,29 +70,26 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 });
 
 
-$app->get('/api/message_recipients', function(Request $request, Response $response)
+$app->get('/api/message_recipients[/{id}]', function(Request $request, Response $response, $args)
 {
-	try{
-		$id = $request->getParam('recipient_id');
-		$sql_query="SELECT * FROM message_recipients where recipient_id= $id";
-	}
-	catch()
-	{
-		$sql_query="SELECT * FROM message_recipients";
-	}
 
-	try
-	{
-		$datab = connect_to_db();
-		$stmt = $datab->query($sql_query);
-		$messages = $stmt->fetchAll(PDO::FETCH_OBJ);
-		$datab=null;
-		echo json_encode($messages);
-	}
-	catch(PDOException $e)
-	{
-		echo '{"error":{"text":'.$e->getMessage().'}';
-	}
+	$id = $args['id'];
+	echo $id;
+	// $sql_query="SELECT * FROM message_recipients where recipient_id= $id";
+
+
+	// try
+	// {
+	// 	$datab = connect_to_db();
+	// 	$stmt = $datab->query($sql_query);
+	// 	$messages = $stmt->fetchAll(PDO::FETCH_OBJ);
+	// 	$datab=null;
+	// 	echo json_encode($messages);
+	// }
+	// catch(PDOException $e)
+	// {
+	// 	echo '{"error":{"text":'.$e->getMessage().'}';
+	// }
 });
 
 
