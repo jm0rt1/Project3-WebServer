@@ -75,9 +75,9 @@ $app->get('/api/message_recipients[/{id}]', function(Request $request, Response 
 
 	if($args['id']){
 		$id = $args['id'];
-		echo $id
+		echo $id;
 	}else{
-		echo "no id"
+		echo "no id";
 	}
 
 	// $sql_query="SELECT * FROM message_recipients where recipient_id= $id";
