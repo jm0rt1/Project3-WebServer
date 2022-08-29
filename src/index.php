@@ -95,9 +95,15 @@ $app->get('/api/message_recipients[/{id}]', function(Request $request, Response 
 });
 
 
-$app->get('/api/users', function(Request $request, Response $response)
+$app->get('/api/users[/{name}]', function(Request $request, Response $response)
 {
-	$sql_query="SELECT * FROM users";
+
+	if(isset($args['name'])){
+		$name = $args['name'];
+		$sql_query="SELECT * FROM users where name= $name";
+	}else{
+		$sql_query="SELECT * FROM users";
+	}
 	try
 	{
 		$datab = connect_to_db();
