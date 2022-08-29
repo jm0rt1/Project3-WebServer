@@ -79,7 +79,7 @@ $app->get('/api/message_recipients[/{id}]', function(Request $request, Response 
 		}else{
 			echo "no id";
 		}
-	} catch (){
+	} catch (Exception e){
 		
 	}
 
