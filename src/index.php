@@ -108,9 +108,28 @@ $app->get('/api/users/by_name/{name}', function(Request $request, Response $resp
 	if(isset($args['name'])){
 		$name = $args['name'];
 		$sql_query="SELECT * FROM users where name= '$name'";
-	}else{
-		$sql_query="SELECT * FROM users";
 	}
+
+	try
+	{
+		$datab = connect_to_db();
+		$stmt = $datab->query($sql_query);
+		$messages = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$datab=null;
+		echo json_encode($messages);
+	}
+	catch(PDOException $e)
+	{
+		echo '{"error":{"text":'.$e->getMessage().'}';
+	}
+});
+
+$app->get('/api/users', function(Request $request, Response $response, $args)
+{
+
+
+	$sql_query="SELECT * FROM users";
+
 
 	try
 	{
@@ -132,8 +151,6 @@ $app->get('/api/users/by_id/{id}', function(Request $request, Response $response
 	if(isset($args['id'])){
 		$id = $args['id'];
 		$sql_query="SELECT * FROM users where id= '$id'";
-	}else{
-		$sql_query="SELECT * FROM users";
 	}
 
 	try
