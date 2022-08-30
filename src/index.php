@@ -102,12 +102,36 @@ $app->get('/api/message_recipients[/{id}]', function(Request $request, Response 
 });
 
 
-$app->get('/api/users[/{name}]', function(Request $request, Response $response, $args)
+$app->get('/api/users/by_name/{name}', function(Request $request, Response $response, $args)
 {
 
 	if(isset($args['name'])){
 		$name = $args['name'];
 		$sql_query="SELECT * FROM users where name= '$name'";
+	}else{
+		$sql_query="SELECT * FROM users";
+	}
+
+	try
+	{
+		$datab = connect_to_db();
+		$stmt = $datab->query($sql_query);
+		$messages = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$datab=null;
+		echo json_encode($messages);
+	}
+	catch(PDOException $e)
+	{
+		echo '{"error":{"text":'.$e->getMessage().'}';
+	}
+});
+
+$app->get('/api/users/by_id/{id}', function(Request $request, Response $response, $args)
+{
+
+	if(isset($args['id'])){
+		$id = $args['id'];
+		$sql_query="SELECT * FROM users where id= '$id'";
 	}else{
 		$sql_query="SELECT * FROM users";
 	}
