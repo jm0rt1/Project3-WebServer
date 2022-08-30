@@ -102,11 +102,15 @@ $app->get('/api/message_recipients[/{id}]', function(Request $request, Response 
 });
 
 
-$app->get('/api/users', function(Request $request, Response $response, $args)
+$app->get('/api/users[/{id}]', function(Request $request, Response $response, $args)
 {
 
-
-	$sql_query="SELECT * FROM users";
+	if(isset($args['id'])){
+		$id = $args['id'];
+		$sql_query="SELECT * FROM users where id= $id";
+	}else{
+		$sql_query="SELECT * FROM users";
+	}
 
 	try
 	{
