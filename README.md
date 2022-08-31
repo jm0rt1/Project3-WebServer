@@ -2,8 +2,9 @@ EASY SETUP:
     Prerquisites: 
         - On windows, use a linux terminal emulator such as MINGW or Git Bash
         - On Mac, use Zsh or bash terminal (included terminal works fine and was how this program was run)
-        - Setup a Database with a table called "posts," 4 columns in order: id=int, owner_id=int, title=text, content=text
-
+        - Setup a Database with 2 tables called...
+            - "messages" ==  4 columns in order: id=int, message_body=text, sender_id=int, recipient_id=int
+            - "users" == 3 columns in order: id= int, name=text, password=text
     Upload webapp to XAMPP installation:
         - open update_web_app.sh
         - set WEB_APP_PATH variable value to the desired path of the web app.
