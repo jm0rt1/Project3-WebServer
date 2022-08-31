@@ -42,7 +42,7 @@ $app->get('/api/messages/by_sender/{sender_id}', function(Request $request, Resp
 
 	if(isset($args['sender_id'])){
 		$sender_id = $args['sender_id'];
-		$sql_query="SELECT * FROM messages where sender_id = $sender_id";
+		$sql_query="SELECT * FROM messages where sender_id = '$sender_id'";
 
 	}
 
