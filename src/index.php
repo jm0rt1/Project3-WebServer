@@ -108,7 +108,7 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 	$conversation_id = $request->getParam('conversation_id');
 
 
-	$sql_query="INSERT INTO messages (message_body,sender_id,parent_message_id,recipient_id,conversation_id) VALUES (:message_body,:sender_id,:parent_message_id,:recipient_id,:conversation_id)";
+	$sql_query="INSERT INTO messages (message_body,sender_id,parent_message_id,recipient_id) VALUES (:message_body,:sender_id,:parent_message_id,:recipient_id)";
 	try
 	{
 		$datab=connect_to_db();
@@ -117,7 +117,6 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 		$stmt->bindParam(':sender_id',$sender_id);
 		$stmt->bindParam(':parent_message_id',$parent_message_id);
 		$stmt->bindParam(':recipient_id',$recipient_id);
-		$stmt->bindParam(':conversation_id',$conversation_id);
 
 		$stmt->execute();
 		$datab=null;
