@@ -59,6 +59,29 @@ $app->get('/api/messages/by_sender/{sender_id}', function(Request $request, Resp
 		echo '{"error":{"text":'.$e->getMessage().'}';
 	}
 });
+
+$app->get('/api/messages/by_recipient/{recipient_id}', function(Request $request, Response $response,$args)
+{
+
+	if(isset($args['recipient_id'])){
+		$recipient_id = $args['recipient_id'];
+		$sql_query="SELECT * FROM messages where recipient_id = '$recipient_id'";
+
+	}
+
+	try
+	{
+		$datab = connect_to_db();
+		$stmt = $datab->query($sql_query);
+		$messages = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$datab=null;
+		echo json_encode($messages);
+	}
+	catch(PDOException $e)
+	{
+		echo '{"error":{"text":'.$e->getMessage().'}';
+	}
+});
 $app->delete('/api/messages/delete', function (Request $request, Response $response)
 {
 	$id = $request->getParam('id');
