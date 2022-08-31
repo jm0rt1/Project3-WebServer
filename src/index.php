@@ -37,7 +37,7 @@ $app->get('/api/messages', function(Request $request, Response $response)
 });
 
 
-$app->get('/api/messages/by_sender/{sender_id}', function(Request $request, Response $response)
+$app->get('/api/messages/by_sender/{sender_id}', function(Request $request, Response $response,$args)
 {
 
 	if(isset($args['sender_id'])){
