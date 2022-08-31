@@ -116,6 +116,9 @@ $app->post('/api/messages/add', function (Request $request, Response $response)
 		$stmt->bindParam(':message_body',$message_body);
 		$stmt->bindParam(':sender_id',$sender_id);
 		$stmt->bindParam(':parent_message_id',$parent_message_id);
+		$stmt->bindParam(':recipient_id',$recipient_id);
+		$stmt->bindParam(':conversation_id',$conversation_id);
+
 		$stmt->execute();
 		$datab=null;
 		echo '{"Result:{"text":"Post Added"}';
